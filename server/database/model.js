@@ -1,9 +1,17 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const db = require('./index.js');
 const Schema = mongoose.Schema
 
-const Model = new Schema(
-
+const ModelSchema = new Schema({
+    userName:String,
+    score:Number
+}
 
 )
+const Model = mongoose.model('Model', ModelSchema );
 
-module.exports = mongoose.model('model', Model)
+let saveScore = (score) => {
+    return Model.save(score)
+};
+
+module.exports.saveScore = saveScore

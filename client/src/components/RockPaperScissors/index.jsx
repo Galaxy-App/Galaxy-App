@@ -9,6 +9,7 @@ import Axios from 'axios';
 export default class Rps extends Component {
     constructor(props){
         super(props)
+        console.log('hello pros from Rps',props)
         this.symbols=["rock","paper","scissors"]
         this.state={
             guestPick:"",
@@ -81,6 +82,8 @@ export default class Rps extends Component {
             .catch(error => {
                 console.error('Error Adding Score', error)
             })
+            console.log('hello from componentDidUpdate',this.props.view)
+            // this.props.view="other component"
         }
     }
 

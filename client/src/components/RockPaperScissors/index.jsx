@@ -73,8 +73,10 @@ export default class Rps extends Component {
     };
     componentDidUpdate(){
         if(this.state.winner!==""){
+            setTimeout(()=>{
             console.log('hello from componentDidUpdate',this.props.view)
             this.props.changeView("Memory")
+            },6000)
 
             // console.log ("hello",this.state.score)
             // let score=this.state.score

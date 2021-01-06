@@ -73,17 +73,19 @@ export default class Rps extends Component {
     };
     componentDidUpdate(){
         if(this.state.winner!==""){
-            console.log ("hello",this.state.score)
-            let score=this.state.score
-            Axios.post('/user/score', score)
-            .then(response => {
-                console.log('Score Added Successfullly', response)
-            })
-            .catch(error => {
-                console.error('Error Adding Score', error)
-            })
             console.log('hello from componentDidUpdate',this.props.view)
-            // this.props.view="other component"
+            this.props.changeView("Memory")
+
+            // console.log ("hello",this.state.score)
+            // let score=this.state.score
+            // Axios.post('/user/score', score)
+            // .then(response => {
+            //     console.log('Score Added Successfullly', response)
+            // })
+            // .catch(error => {
+            //     console.error('Error Adding Score', error)
+            // })
+
         }
     }
 

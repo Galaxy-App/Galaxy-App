@@ -1,7 +1,7 @@
 import Rps from './RockPaperScissors/index';
 import MainLog from './RegisterSignIn/index';
 import Quiz from './quiz/index';
-import Memory from './memoryGame/index'
+import MainMem from './memoryGame/index'
 
 
 import React, { Component } from 'react'
@@ -44,7 +44,7 @@ export default class Main extends Component {
     else if(this.state.view==="Memory"){
       return (
         <div>
-          <Memory view={this.state.view} changeView={this.changeView}/>
+          <MainMem view={this.state.view} changeView={this.changeView}/>
         </div>
       )
     }

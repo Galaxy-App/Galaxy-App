@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './index.css';
 import GuestPick from './guestPick';
 import HousePick from './HousePick';
-import ReleaseWin from './releaseWin.js';
+import ReleaseWin from './releaseWin';
 import Axios from 'axios';
 
 
@@ -16,13 +16,18 @@ export default class Rps extends Component {
             housePick:"",
             score:0,
             winner:"",
-            chosen:"guest"
+            chosen:"guest",
         }
         this.chosenState=this.chosenState.bind(this);
         this.guestPickState=this.guestPickState.bind(this);
         this.runGame=this.runGame.bind(this);
         this.decideWinner=this.decideWinner.bind(this);
         this.setScore=this.setScore.bind(this);
+        this.handleClickRender=this.handleClickRender.bind(this);
+    };
+    handleClickRender(){
+        console.log('clicked')
+        return <GuestPick/>
     }
     chosenState(param){
         this.setState({
@@ -72,7 +77,7 @@ export default class Rps extends Component {
         }
     };
     componentDidUpdate(){
-        if(this.state.winner!==""){
+        if(this.state.winner==="You won!!"){
             setTimeout(()=>{
             console.log('hello from componentDidUpdate',this.props.view)
             this.props.changeView("Memory")
@@ -103,14 +108,17 @@ export default class Rps extends Component {
             }else if (this.state.chosen==="house"){
                 return(
                     <div>
-                        <HousePick runGame={this.runGame} guestPick={this.state.guestPick} housePick={this.state.housePick} winner={this.state.winner} chosenState={this.chosenState}/>
+                        <HousePick runGame={this.runGame} guestPick={this.state.guestPick}
+                                    housePick={this.state.housePick} winner={this.state.winner}
+                                    chosenState={this.chosenState}
+                        />
                     </div>
                 )
             }
             else if (this.state.chosen==="win"){
                 return(
                     <div>
-                    <ReleaseWin winner={this.state.winner} score={this.state.score}/>
+                    <ReleaseWin winner={this.state.winner} score={this.state.score} handleClickRender={this.handleClickRender}/>
                     </div>
                 )
             }

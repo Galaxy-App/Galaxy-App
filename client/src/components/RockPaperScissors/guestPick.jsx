@@ -1,7 +1,7 @@
 import React from 'react';
-import paper from './images/paper.jpg';
-import rock from './images/rock.jpg';
-import scissors from './images/scissors.jpg';
+import paper from './images/paper.png';
+import rock from './images/rock.png';
+import scissors from './images/scissors.png';
 import './index.css';
 
 
@@ -13,7 +13,7 @@ export default function GuestPick(props) {
         props.chosenState("house")
     }
     return (
-        <div>
+        <div className="guestPick">
         <h1>Choose your move</h1>
             <div className="paper">
                 <img src={paper} alt="paper" onClick={playGame}/>

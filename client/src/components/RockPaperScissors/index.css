@@ -1,7 +1,10 @@
 *{
-    background-color: #0bb;
+    background-image: url("https://cdn130.picsart.com/279042194000201.gif?to=min&r=640");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     font-family: sans-serif;
-    color: #fff;
+    color: rgb(4, 10, 32);
 }
 
 body {
@@ -22,9 +25,10 @@ justify-content: space-evenly;
     position: relative;
     display:inline-block;
     border: 2px solid #fff;
-    opacity: 0.5;
+    opacity: 1;
     background-repeat: no-repeat;
     background-position: center center;
+    vertical-align:top;
 }
 .player-card:nth-child(2){
     -moz-transform: scaleX(-1);
@@ -36,12 +40,13 @@ justify-content: space-evenly;
 }
 button{
     width:25rem;
-    border:2px solid #fff;
+    border:2px solid rgb(3, 9, 60);
     margin:1.25rem auto;
     cursor:pointer;
     display: block;
     outline: none;
     padding: 1rem;
+    position: absolute; bottom: 0; left: 0; right: 0
 }
 button:hover{
     background-color: #0cc;
@@ -57,4 +62,9 @@ h1{
     font-family: Arial, Helvetica, Arial, sans-serif;
     color:black;
     width: 100%;
+}
+.guestPick{
+    width:300px;
+    vertical-align:top;
+    display:inline-block;
 }

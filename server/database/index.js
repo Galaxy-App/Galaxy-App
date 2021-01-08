@@ -17,7 +17,9 @@ let Q = mongoose.Schema({
   text: String,
   correct: String,
   op: Array,
+
   ks: String,
+
 });
 let Quest = mongoose.model("Quest", Q);
 
@@ -25,6 +27,7 @@ let saveQuestions = (questions) => {
   return Quest.insertMany(questions);
 };
 let retrieve = () => {
+
   return Quest.find({});
 };
 let del = () => {

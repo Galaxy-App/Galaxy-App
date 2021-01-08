@@ -1,4 +1,5 @@
 const express = require("express");
+
 const app = express();
 // const $ = require("jquery");
 const cors = require("cors");
@@ -44,6 +45,7 @@ app.get("/", (req, res) => {
         .then(() => res.status(200).send("success saved"))
         .catch((err) => console.log("error saving", err));
 
+
       // console.log("here are your questions", arr);
       // res.send();
     })
@@ -51,19 +53,19 @@ app.get("/", (req, res) => {
       console.log("request problem", error);
     });
 });
+
+ 
+
 app.get("/quiz", (req, res) => {
   dbHelper.retrieve().then((response) => {
     console.log("here is the get request  from the db", response);
-    res.send();
-  });
-});
-app.delete("/quiz", (req, res) => {
-  dbHelper.del().then(() => {
-    res.send();
+    res.send(response);
+
   });
 });
 
 app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`));
+
 
 ////////////////////////////////////////////////
 function red(str, n = 0) {
@@ -86,3 +88,4 @@ function match(str, c, n = 0) {
     return match(str, c, n + 1);
   }
 }
+

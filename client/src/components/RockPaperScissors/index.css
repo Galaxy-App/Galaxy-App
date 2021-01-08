@@ -1,0 +1,74 @@
+*{
+    background-image: url("https://cdn130.picsart.com/279042194000201.gif?to=min&r=640");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    font-family: sans-serif;
+    font-size: large;
+    color: #0F110C;
+    text-shadow: 1px 1px #b49dcc7b;
+}
+
+body {
+width: 40px;
+margin:1rem auto;
+display: flex;
+justify-content: space-evenly;
+}
+.player-card{
+    width:12.5rem;
+    height:12.5rem;
+    margin: 1.25rem;
+    border-radius: 50%;
+    background-color: #ddd;
+    text-align: center;
+    line-height: 12.5rem;
+    position: relative;
+    display:inline-block;
+    border: 2px solid #fff;
+    opacity: 1;
+    background-repeat: no-repeat;
+    background-position: center center;
+    vertical-align:top;
+}
+.player-card:nth-child(2){
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter:"FlipH";
+}
+button{
+    width:25rem;
+    border:2px solid  323031;
+    margin:1.25rem auto;
+    cursor:pointer;
+    display: block;
+    outline: none;
+    padding: 1rem;
+    position: absolute; bottom: 0; left: 0; right: 0
+}
+button:hover{
+    transition: all 200ms ease-out;
+}
+img {
+    border-radius: 8px;
+    border: 1px solid #7684c3;
+    padding: 5px;
+    width: 150px;
+}
+h1{
+    font-family: Arial, Helvetica, Arial, sans-serif;
+    color:#0F110C;
+    width: 100%;
+}
+.guestPick{
+    width:300px;
+    vertical-align:top;
+    display:inline-block;
+}
+.btn-runGame{
+    width:100px;
+    position: absolute; bottom: 0; left: 0; right: 0
+}

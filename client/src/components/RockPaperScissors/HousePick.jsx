@@ -9,7 +9,7 @@ console.log('house',props.housePick)
 
                 <PlayerCards guestPick={props.guestPick} housePick={props.housePick} />
 
-                <button onClick={props.runGame}>Run Game</button>
+                <button className="btn-runGame" onClick={props.runGame}>Run Game</button>
 
             </div>
         )

@@ -1,17 +1,13 @@
-const mongoose = require('mongoose');
-const db = require('./index.js');
-const Schema = mongoose.Schema
+// const mongoose = require("mongoose");
+// mongoose.connect("mongodb://localhost:27017/quiz", { useNewUrlParser: true });
+// mongoose.connect(process.env.MONGO_URL);
+const DB = require("./index");
+const Schema = mongoose.Schema;
 
-const ModelSchema = new Schema({
-    userName:String,
-    score:Number
-}
-
-)
-const Model = mongoose.model('Model', ModelSchema );
-
-let saveScore = (score) => {
-    return Model.save(score)
-};
-
-module.exports.saveScore = saveScore
+const Model = new Schema({
+  username: String,
+  password: String,
+  score: Number,
+});
+let User = mongoose("User", Model);
+module.exports = User;

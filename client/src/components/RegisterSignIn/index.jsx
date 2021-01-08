@@ -30,6 +30,15 @@ handleLogin() {
     this.props.changeView("Rps")
         console.log('props???',this.state.view)
 }
+componentDidMount(){
+
+    Axios
+    .get("http://localhost:8000/home",(req,res)=>{
+        console.log("hellllloooo")
+    })
+    .then((response)=>console.log("response from componentDidMount register",response))
+    .catch()
+}
 
 
 

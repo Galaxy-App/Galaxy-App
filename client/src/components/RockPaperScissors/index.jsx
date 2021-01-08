@@ -3,7 +3,6 @@ import './index.css';
 import GuestPick from './guestPick';
 import HousePick from './HousePick';
 import ReleaseWin from './releaseWin';
-import Axios from 'axios';
 
 
 export default class Rps extends Component {
@@ -27,7 +26,8 @@ export default class Rps extends Component {
     };
     handleClickRender(){
         console.log('clicked')
-        return <GuestPick/>
+        this.chosenState("guest")
+        // return <GuestPick chosenState={this.chosenState} guestPickState={this.guestPickState}/>
     }
     chosenState(param){
         this.setState({
@@ -79,9 +79,9 @@ export default class Rps extends Component {
     componentDidUpdate(){
         if(this.state.winner==="You won!!"){
             setTimeout(()=>{
-            console.log('hello from componentDidUpdate',this.props.view)
-            this.props.changeView("Memory")
-            },6000)
+            console.log('hello from componentDidUpdate RPS',this.props.view)
+            this.props.changeView("Quiz")
+            },4000)
 
             // console.log ("hello",this.state.score)
             // let score=this.state.score

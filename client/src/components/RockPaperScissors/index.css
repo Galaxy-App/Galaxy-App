@@ -4,12 +4,13 @@
     background-attachment: fixed;
     background-position: center;
     font-family: sans-serif;
-    color: rgb(4, 10, 32);
+    font-size: large;
+    color: #0F110C;
+    text-shadow: 1px 1px #b49dcc7b;
 }
 
 body {
 width: 40px;
-border: 2px solid #088;
 margin:1rem auto;
 display: flex;
 justify-content: space-evenly;
@@ -40,7 +41,7 @@ justify-content: space-evenly;
 }
 button{
     width:25rem;
-    border:2px solid rgb(3, 9, 60);
+    border:2px solid  323031;
     margin:1.25rem auto;
     cursor:pointer;
     display: block;
@@ -49,22 +50,25 @@ button{
     position: absolute; bottom: 0; left: 0; right: 0
 }
 button:hover{
-    background-color: #0cc;
     transition: all 200ms ease-out;
 }
 img {
     border-radius: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid #7684c3;
     padding: 5px;
     width: 150px;
 }
 h1{
     font-family: Arial, Helvetica, Arial, sans-serif;
-    color:black;
+    color:#0F110C;
     width: 100%;
 }
 .guestPick{
     width:300px;
     vertical-align:top;
     display:inline-block;
+}
+.btn-runGame{
+    width:100px;
+    position: absolute; bottom: 0; left: 0; right: 0
 }

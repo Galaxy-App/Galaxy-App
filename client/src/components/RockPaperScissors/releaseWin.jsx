@@ -16,7 +16,6 @@ else if(props.winner==="It's a draw"){
     return (
         <div>
             <h1>{props.winner}</h1>
-            <h1>Your score is {props.score}</h1>
         <TryAgain handleClickRender={props.handleClickRender}/>
         </div>
     )

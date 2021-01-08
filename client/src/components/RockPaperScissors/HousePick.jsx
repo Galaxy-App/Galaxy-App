@@ -1,18 +1,20 @@
-import React  from 'react';
-import PlayerCards from './PlayerCards';
-import './index.css';
+import React from "react";
+import PlayerCards from "./PlayerCards";
+import "./index.css";
 
 export default function HousePick(props) {
-console.log('house',props.housePick)
-        return (
-            <div className="rps">
+  console.log("house", props.housePick);
+  return (
+    <div className="rps">
+      <PlayerCards guestPick={props.guestPick} housePick={props.housePick} />
 
-                <PlayerCards guestPick={props.guestPick} housePick={props.housePick} />
-
-                <button className="btn-runGame" onClick={props.runGame}>Run Game</button>
-
-            </div>
-        )
-    }
-
-
+      <button
+        className="btn-runGame"
+        onClick={props.runGame}
+        style={{ margin: "20px" }}
+      >
+        Run Game
+      </button>
+    </div>
+  );
+}

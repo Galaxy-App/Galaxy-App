@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import ScoreShow from './ScoreShow'
 import './index.css'
 
 export default class MainQuiz extends Component {
@@ -9,7 +10,8 @@ export default class MainQuiz extends Component {
 			questions: [],
 			currentQuestion:0,
 			score: 0,
-			showScore: false
+			showScore: false,
+			globalScore: this.props.globalScore
 		}
 		this.getQuestions=this.getQuestions.bind(this)
 		this.computeAnswer=this.getQuestions.bind(this);
@@ -23,9 +25,6 @@ export default class MainQuiz extends Component {
 	};
 	updateQuestion(param){
 		this.setState({questions: param})
-	};
-	handleView(){
-
 	};
 
 	getQuestions(){
@@ -73,7 +72,8 @@ export default class MainQuiz extends Component {
 		console.log("expected answer",isCorrect)
 		if (isCorrect===e.target.innerHTML) {
 			this.setState({
-				score:this.state.score+5
+				score:this.state.score+5,
+				globalScore:this.props.updateGlobalScore(5)
 			})
 		}
 		const nextQuestion = this.state.currentQuestion + 1;
@@ -82,7 +82,7 @@ export default class MainQuiz extends Component {
 		} else {
 			this.setState({showScore:true});
 		}
-	}
+	};
 
 	componentDidMount() {
 		this.getQuestions();
@@ -90,7 +90,7 @@ export default class MainQuiz extends Component {
 			setTimeout(()=>{
 			console.log('hello from componentDidUpdate QUIZ',this.props.view)
 				this.props.changeView("Memory")
-				},4000)
+				},4000);
 		}
 	};
 	render() {
@@ -100,7 +100,10 @@ export default class MainQuiz extends Component {
 			<div className="container">
 			{this.state.showScore ? (
 				<div className='score-section'>
-					<ScoreShow score={this.state.score}/>
+					<ScoreShow score={this.state.score} max={this.state.questions.length*5}
+					changeView={this.props.changeView} globalScore={this.props.globalScore}
+					updateGlobalScore={this.props.updateGlobalScore}
+					/>
 				</div>
 			) : (
 				<>

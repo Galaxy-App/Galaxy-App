@@ -27,12 +27,15 @@ app.get("/home", (req, res) => {
           op: ele.incorrect_answers,
         };
       });
+      // console.log('map array is',arr)
+
       for (let index = 0; index < arr.length; index++) {
         const element = arr[index];
         element.op.push(element.correct)
       }
-      console.log("arrray",arr)
-      console.log("Schema db", arr);
+
+      // console.log("arrray",arr)
+      // console.log("Schema db", arr);
       dbHelper
         .saveQuestions(arr)
         .then(() => res.status(200).send("success saved"))

@@ -16,6 +16,7 @@ export default class Rps extends Component {
             score:0,
             winner:"",
             chosen:"guest",
+            globalScore:this.props.globalScore
         }
         this.chosenState=this.chosenState.bind(this);
         this.guestPickState=this.guestPickState.bind(this);
@@ -46,14 +47,15 @@ export default class Rps extends Component {
             this.setState({
                 housePick:this.symbols[Math.floor(Math.random()*3)]
             })
-        if(counter>30){
+        if(counter>10){
             clearInterval(myInterval)
             this.setState({
                 winner:this.decideWinner(),
                 chosen:"win"
             });
-            this.setScore()
+            
         }
+        this.setScore()
         },100)
     };
     decideWinner(){
@@ -71,9 +73,14 @@ export default class Rps extends Component {
     setScore(){
         if(this.state.winner==="It's a draw"){
             this.setState({score:5})
+            this.props.updateGlobalScore(5)
+            console.log("qwerty",this.state.globalScore)
         }
         else if(this.state.winner==="You won!!"){
-            this.setState({score:10})
+            this.setState({score:10
+            })
+            this.props.updateGlobalScore(10)
+            console.log("qwerty",this.state.globalScore)
         }
     };
     componentDidUpdate(){
@@ -118,7 +125,7 @@ export default class Rps extends Component {
             else if (this.state.chosen==="win"){
                 return(
                     <div>
-                    <ReleaseWin winner={this.state.winner} score={this.state.score} handleClickRender={this.handleClickRender}/>
+                    <ReleaseWin winner={this.state.winner} score={this.state.score} handleClickRender={this.handleClickRender} />
                     </div>
                 )
             }

@@ -14,10 +14,18 @@ export default class Main extends Component {
       globalScore:0
     }
     this.changeView=this.changeView.bind(this)
+    this.updateGlobalScore=this.updateGlobalScore.bind(this)
+
   }
   changeView(param){
     this.setState({
       view:param
+    })
+  }
+  updateGlobalScore(param){
+    var number= this.state.globalScore + param
+    this.setState({
+      globalScore: number
     })
   }
   render() {
@@ -31,21 +39,27 @@ export default class Main extends Component {
     else if(this.state.view==="Rps"){
       return (
         <div>
-          <Rps view={this.state.view} changeView={this.changeView} globalScore={this.state.globalScore}/>
+          <Rps view={this.state.view} changeView={this.changeView}
+          globalScore={this.state.globalScore} updateGlobalScore={this.updateGlobalScore}
+          />
         </div>
       )
     }
     else if(this.state.view==="Quiz"){
       return (
         <div>
-          <MainQuiz view={this.state.view} changeView={this.changeView} globalScore={this.state.globalScore}/>
+          <MainQuiz view={this.state.view} changeView={this.changeView}
+          globalScore={this.state.globalScore} updateGlobalScore={this.updateGlobalScore}
+          />
         </div>
       )
     }
     else if(this.state.view==="Memory"){
       return (
         <div>
-          <MainMem view={this.state.view} changeView={this.changeView} globalScore={this.state.globalScore}/>
+          <MainMem view={this.state.view} changeView={this.changeView}
+          globalScore={this.state.globalScore} updateGlobalScore={this.updateGlobalScore}
+          />
         </div>
       )
     }

@@ -1,9 +1,0 @@
-.Board {
-    
-    height: 450px;
-    width: 450px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap
-  }

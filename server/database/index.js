@@ -17,6 +17,7 @@ let Q = mongoose.Schema({
   text: String,
   correct: String,
   op: Array,
+  ks: String,
 });
 let Quest = mongoose.model("Quest", Q);
 
@@ -26,5 +27,10 @@ let saveQuestions = (questions) => {
 let retrieve = () => {
   return Quest.find({});
 };
+let del = () => {
+  console.log("deleted");
+  return Quest.deleteMany({ ks: "ks" });
+};
 module.exports.saveQuestions = saveQuestions;
 module.exports.retrieve = retrieve;
+module.exports.del = del;

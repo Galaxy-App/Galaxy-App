@@ -13,23 +13,33 @@ const [completedCount, setcompletedCount] = useState(0)
 const [result, setresult] = useState("")
 const [showen,setShowen]=useState("true")
 const [clicked, setclicked] = useState("false")
+<<<<<<< HEAD
 const [showResult, setshowResult] = useState(false)
+=======
+>>>>>>> d39281d36dbf9d2e20230d5ae2c732440b0b7b1e
 
 
 const onCardClick = card => () => {
 
     if (checkersFull(checkers) || cardAlreadyInCheckers(checkers, card)) return
 
+<<<<<<< HEAD
     // setcompletedCount(completedCount-5)
+=======
+    setcompletedCount(completedCount-5)
+>>>>>>> d39281d36dbf9d2e20230d5ae2c732440b0b7b1e
 
 
     const newCheckers = [...checkers, card]
     setCheckers(newCheckers)
     //validateCheckers confirm that we have the same card
     const cardsInCheckersMatched = validateCheckers(newCheckers)
+<<<<<<< HEAD
     if (nonvalidateCheckers(newCheckers) ){
       setcompletedCount(completedCount-5)
     }
+=======
+>>>>>>> d39281d36dbf9d2e20230d5ae2c732440b0b7b1e
     if (cardsInCheckersMatched) {
       setcompletedCount(completedCount+10)
       setCompleted([...completed, newCheckers[0].type])
@@ -43,10 +53,13 @@ const onCardClick = card => () => {
       return checkers.length === 2 &&
       checkers[0].type === checkers[1].type
     }
+<<<<<<< HEAD
     function nonvalidateCheckers(checkers){
       return checkers.length === 2 &&
       checkers[0].type !== checkers[1].type
     }
+=======
+>>>>>>> d39281d36dbf9d2e20230d5ae2c732440b0b7b1e
     function cardAlreadyInCheckers(checkers, card){
       return checkers.length === 1 && checkers[0].id === card.id
     }
@@ -69,9 +82,13 @@ const onCardClick = card => () => {
           setresult('you lost!')
         }else if (completedFull(completed)){
           console.log ("result",result)
+<<<<<<< HEAD
           setShowen(false)
           setresult("Awesome!, You won the game")
           setshowResult(true)
+=======
+          setresult("Awesome!, You won the game")
+>>>>>>> d39281d36dbf9d2e20230d5ae2c732440b0b7b1e
 
         }
       }
@@ -112,6 +129,7 @@ const onCardClick = card => () => {
                   <Card {...card} onClick={onCardClick(card)} key={card.id} />
               ))}
           </div>
+<<<<<<< HEAD
       ) : (
           <>
           <div className='score-section'>
@@ -129,8 +147,29 @@ const onCardClick = card => () => {
           </div>
           </>
       )
+=======
+      ) : ( clicked ? (
+          <>
+          <div className='score-section'>
+          <h2 className='moves'>{result}</h2>
+              <button className='result' onClick={hundleClick}>Play again</button>
+          </div>
+          </>
+      ):(
+          <>
+          <div className='score-section'>
+          <h2 className='moves'>{result}</h2>
+          </div>
+          </>
+      )
+          )
+>>>>>>> d39281d36dbf9d2e20230d5ae2c732440b0b7b1e
       }
       </div>
   )
   }
+<<<<<<< HEAD
+=======
+  
+>>>>>>> d39281d36dbf9d2e20230d5ae2c732440b0b7b1e
   export default Board

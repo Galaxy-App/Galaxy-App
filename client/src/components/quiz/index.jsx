@@ -92,7 +92,10 @@ export default class MainQuiz extends Component {
 				this.props.changeView("Memory")
 				},4000);
 		}
-	};
+		};
+		componentWillUnmount(){
+			
+		};
 	render() {
 		let quest=this.state.questions[this.state.currentQuestion]||{op:[]};
 		let ans=this.shuffle(quest.op)

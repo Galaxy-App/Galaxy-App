@@ -10,7 +10,7 @@ export default class Main extends Component {
   constructor(props){
     super(props)
     this.state={
-      view:"MainLog",
+      view:"Memory",
       globalScore:0
     }
     this.changeView=this.changeView.bind(this)

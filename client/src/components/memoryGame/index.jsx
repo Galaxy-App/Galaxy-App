@@ -14,7 +14,7 @@ import twix from './imgs/twix.jpeg'
 
 function MainMem(props) {
 const cards = buildCards()
-console.log('hello from maimMem',props)
+console.log('hello from mainMem props',props)
 return (
     <div className="App">
     <Board cards={cards} />

@@ -11,36 +11,53 @@ const [checkers, setCheckers] = useState([])
 const [completed, setCompleted] = useState([])
 const [completedCount, setcompletedCount] = useState(0)
 const [result, setresult] = useState("")
+const [showen,setShowen]=useState("true")
+const [clicked, setclicked] = useState("false")
+const [showResult, setshowResult] = useState(false)
+
 
 const onCardClick = card => () => {
 
     if (checkersFull(checkers) || cardAlreadyInCheckers(checkers, card)) return
 
+    // setcompletedCount(completedCount-5)
+
+
     const newCheckers = [...checkers, card]
     setCheckers(newCheckers)
     //validateCheckers confirm that we have the same card
     const cardsInCheckersMatched = validateCheckers(newCheckers)
+    if (nonvalidateCheckers(newCheckers) ){
+      setcompletedCount(completedCount-5)
+    }
     if (cardsInCheckersMatched) {
-    setCompleted([...completed, newCheckers[0].type])
+      setcompletedCount(completedCount+10)
+      setCompleted([...completed, newCheckers[0].type])
+      console.log("completed",completed)
     }
 
     if (checkersFull(newCheckers)) {
-        resetCheckersAfter(1000)
-      }
-      function validateCheckers(checkers){
-        return checkers.length === 2 &&
-        checkers[0].type === checkers[1].type
-      }
-      function cardAlreadyInCheckers(checkers, card){
-        return checkers.length === 1 && checkers[0].id === card.id
-      }
-      function checkersFull(checkers){
-        return checkers.length === 2
-      }
-      function  completedFull(completed){
-        return completed.length ===6
-      }
-      //wait some time so that the user can see the cards 
+      resetCheckersAfter(1000)
+    }
+    function validateCheckers(checkers){
+      return checkers.length === 2 &&
+      checkers[0].type === checkers[1].type
+    }
+    function nonvalidateCheckers(checkers){
+      return checkers.length === 2 &&
+      checkers[0].type !== checkers[1].type
+    }
+    function cardAlreadyInCheckers(checkers, card){
+      return checkers.length === 1 && checkers[0].id === card.id
+    }
+    function checkersFull(checkers){
+      return checkers.length === 2
+    }
+    function  completedFull(completed){
+      return completed.length ===6
+    }
+
+      //wait some time so that the user can see the cards
       function resetCheckersAfter(time) {
         setTimeout(() => {
           setCheckers([])
@@ -48,11 +65,14 @@ const onCardClick = card => () => {
       }
       function score(){
         if(completedCount===-100){
-          setresult(result+'you lost!')
-  
+          setShowen(false)
+          setresult('you lost!')
         }else if (completedFull(completed)){
-          setresult(result+"Awesome!, You won the game")
-  
+          console.log ("result",result)
+          setShowen(false)
+          setresult("Awesome!, You won the game")
+          setshowResult(true)
+
         }
       }
       score()
@@ -73,19 +93,44 @@ const onCardClick = card => () => {
       setCompleted([])
       setcompletedCount(0)
       setresult("")
-    }
+    };
+    function clickk(){
+      setclicked("true")
+    };
+    function hundleClick(){
+      restart();
+      clickk();
+      setShowen(true)
+    };
+    console.log("completedCount",completedCount)
     return (
-      <div>
-          <h2 className='completed'> score : {completedCount}</h2>
-      <div className="Board">
-        {cards.map(card => (
-          <Card {...card} onClick={onCardClick(card)} key={card.id} />
-        ))}
+      <div className="container">
+      {showen ? (
+          <div className='boarding'>
+              <h2 className='completed'> score : {completedCount}</h2>
+              {cards.map(card => (
+                  <Card {...card} onClick={onCardClick(card)} key={card.id} />
+              ))}
+          </div>
+      ) : (
+          <>
+          <div className='score-section'>
+          <h2 className='moves'>{result}</h2>
+          <div>
+            {clicked ?(
+              <div></div>
+            ):(
+              <div>
+              <button className='result' onClick={hundleClick}>Play again</button>
+              </div>
+            )
+            }
+          </div>
+          </div>
+          </>
+      )
+      }
       </div>
-      <button className='result' onClick={restart}>Play again</button>
-      <h2 className='moves'>{result}</h2>
-      </div>
-    )
+  )
   }
-  
   export default Board

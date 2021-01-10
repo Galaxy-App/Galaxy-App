@@ -1,45 +1,39 @@
-import React, {useState, useEffect} from 'react'
-import Card from './Card'
-import './css/Board.css'
+import React, {useState, useEffect} from 'react';
+import Card from './Card';
+import './css/Board.css';
+import Axios from 'axios';
 //using hooks allows you to use state and other React features without writing a class
 //let you always use functions instead of having to constantly
 // switch between functions, classes, higher-order components, and render props.
 //3 state ; cards ,chekers, completed
 const Board = props => {
+  console.log ("board prps",props)
 const [cards, setCards] = useState(props.cards/*initial state */)
 const [checkers, setCheckers] = useState([])
 const [completed, setCompleted] = useState([])
 const [completedCount, setcompletedCount] = useState(0)
 const [result, setresult] = useState("")
-const [showen,setShowen]=useState("true")
-const [clicked, setclicked] = useState("false")
-<<<<<<< HEAD
-const [showResult, setshowResult] = useState(false)
-=======
->>>>>>> d39281d36dbf9d2e20230d5ae2c732440b0b7b1e
+const [showen,setShowen]=useState(true)
+const [clicked, setclicked] = useState(false)
+// const [globalScore,updateGlobalScore]=useState(props.globalScore,props.updateGlobalScore)
+// const [view,changeView]=useState(props.view,props.changeView)
+
 
 
 const onCardClick = card => () => {
 
     if (checkersFull(checkers) || cardAlreadyInCheckers(checkers, card)) return
 
-<<<<<<< HEAD
     // setcompletedCount(completedCount-5)
-=======
-    setcompletedCount(completedCount-5)
->>>>>>> d39281d36dbf9d2e20230d5ae2c732440b0b7b1e
 
 
     const newCheckers = [...checkers, card]
     setCheckers(newCheckers)
     //validateCheckers confirm that we have the same card
     const cardsInCheckersMatched = validateCheckers(newCheckers)
-<<<<<<< HEAD
     if (nonvalidateCheckers(newCheckers) ){
       setcompletedCount(completedCount-5)
     }
-=======
->>>>>>> d39281d36dbf9d2e20230d5ae2c732440b0b7b1e
     if (cardsInCheckersMatched) {
       setcompletedCount(completedCount+10)
       setCompleted([...completed, newCheckers[0].type])
@@ -47,19 +41,16 @@ const onCardClick = card => () => {
     }
 
     if (checkersFull(newCheckers)) {
-      resetCheckersAfter(1000)
+      resetCheckersAfter(900)
     }
     function validateCheckers(checkers){
       return checkers.length === 2 &&
       checkers[0].type === checkers[1].type
     }
-<<<<<<< HEAD
     function nonvalidateCheckers(checkers){
       return checkers.length === 2 &&
       checkers[0].type !== checkers[1].type
     }
-=======
->>>>>>> d39281d36dbf9d2e20230d5ae2c732440b0b7b1e
     function cardAlreadyInCheckers(checkers, card){
       return checkers.length === 1 && checkers[0].id === card.id
     }
@@ -67,7 +58,7 @@ const onCardClick = card => () => {
       return checkers.length === 2
     }
     function  completedFull(completed){
-      return completed.length ===6
+      return completed.length ===7
     }
 
       //wait some time so that the user can see the cards
@@ -77,18 +68,17 @@ const onCardClick = card => () => {
         }, time)
       }
       function score(){
-        if(completedCount===-100){
+        // console.log ("props.globalScore init ",globalScore)
+        if(completedCount===-50){
           setShowen(false)
-          setresult('you lost!')
+          setresult('Oh Oh You lost!')
+          
+          // console.log ("props.globalScore fin ",globalScore)
         }else if (completedFull(completed)){
-          console.log ("result",result)
-<<<<<<< HEAD
           setShowen(false)
           setresult("Awesome!, You won the game")
-          setshowResult(true)
-=======
-          setresult("Awesome!, You won the game")
->>>>>>> d39281d36dbf9d2e20230d5ae2c732440b0b7b1e
+          
+          console.log ("props.globalScore fin ",props.globalScore)
 
         }
       }
@@ -103,7 +93,7 @@ const onCardClick = card => () => {
           completed.includes(card.type),
       }))
       setCards(newCards)
-    }, [checkers, completed])
+    },[checkers,completed])
     function restart(){
       setCards(props.cards)
       setCheckers([])
@@ -119,57 +109,52 @@ const onCardClick = card => () => {
       clickk();
       setShowen(true)
     };
-    console.log("completedCount",completedCount)
+    function hundleClick2(){
+      console.log("clicked")
+      props.updateGlobalScore(completedCount)
+      props.changeView("GlobalScore")
+
+    };
     return (
       <div className="container">
       {showen ? (
+        <div>
+        <div> Let's test your memory now. Watch out tries are limited!!</div>
+        <div>
+        <h2 className='completed'> Score : {completedCount}</h2>
+        </div>
           <div className='boarding'>
-              <h2 className='completed'> score : {completedCount}</h2>
               {cards.map(card => (
                   <Card {...card} onClick={onCardClick(card)} key={card.id} />
               ))}
           </div>
-<<<<<<< HEAD
+        </div>
       ) : (
           <>
           <div className='score-section'>
-          <h2 className='moves'>{result}</h2>
+          <h1 >{result} </h1>
+          <button onClick={hundleClick2}>Global Score</button>
           <div>
             {clicked ?(
-              <div></div>
-            ):(
-              <div>
+              <>
+              <div className="retryButton">
               <button className='result' onClick={hundleClick}>Play again</button>
               </div>
+              </>
+            ):(
+              <>
+              <div>
+               
+              </div>
+              </>
             )
             }
           </div>
           </div>
           </>
       )
-=======
-      ) : ( clicked ? (
-          <>
-          <div className='score-section'>
-          <h2 className='moves'>{result}</h2>
-              <button className='result' onClick={hundleClick}>Play again</button>
-          </div>
-          </>
-      ):(
-          <>
-          <div className='score-section'>
-          <h2 className='moves'>{result}</h2>
-          </div>
-          </>
-      )
-          )
->>>>>>> d39281d36dbf9d2e20230d5ae2c732440b0b7b1e
       }
       </div>
   )
   }
-<<<<<<< HEAD
-=======
-  
->>>>>>> d39281d36dbf9d2e20230d5ae2c732440b0b7b1e
   export default Board

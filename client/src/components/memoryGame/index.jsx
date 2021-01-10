@@ -7,7 +7,8 @@ import galaxy from './imgs/galaxy.jpg'
 import maistro from './imgs/maistro.jpg'
 import milka from './imgs/milka.jpg'
 import said from './imgs/said.png'
-import twix from './imgs/twix.jpeg'
+import twix from './imgs/twix.jpeg';
+import merci from './imgs/merci.jpg'
 
 
 
@@ -17,7 +18,8 @@ const cards = buildCards()
 console.log('hello from mainMem props',props)
 return (
     <div className="App">
-    <Board cards={cards} />
+    <Board cards={cards} globalScore={props.globalScore} updateGlobalScore={props.updateGlobalScore} changeView={props.changeView} view={
+        props.view}/>
     </div>
 )
 }
@@ -28,7 +30,7 @@ export default MainMem
 function buildCards() {
 let id = 0
   //we have 7 paire of imagise to work with
-const images = {dairyMilk, ferreroRocher, galaxy, maistro, milka, said, twix}
+const images = {dairyMilk, ferreroRocher, galaxy, maistro, milka, said, twix,merci}
 const cards = Object.keys(images).reduce((result, item) => {
 
     const getCard = () => ({

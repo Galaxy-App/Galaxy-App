@@ -3,6 +3,7 @@ import './index.css';
 import TryAgain from './TryAgain'
 
 export default function ReleaseWin(props) {
+
 if(props.winner==="You won!!"){
     return (
         <div>
@@ -23,7 +24,14 @@ else if(props.winner==="It's a draw"){
 else if(props.winner==="Opss! You lost"){
     return (
         <div>
-            <h1>{props.winner}</h1>
+            <h1 style={{
+            margin: "100px",
+            color: "white",
+            width: "200px",
+            textalign: "center",
+            fontsize: "50px",
+            fontweight: "bold",
+        }}>{props.winner}</h1>
             <h1>See u next time</h1>
         </div>
     )

@@ -17,6 +17,7 @@ let Q = mongoose.Schema({
   text: String,
   correct: String,
   op: Array,
+  ks: String,
 });
 let Quest = mongoose.model("Quest", Q);
 
@@ -24,8 +25,12 @@ let saveQuestions = (questions) => {
   return Quest.insertMany(questions);
 };
 let retrieve = () => {
-  return Quest.find({})
-  // .sort(() => 0.5 - Math.random()).slice(0, 10));
+  return Quest.find({}).limit(10)
+};
+let del = () => {
+  console.log("deleted");
+  return Quest.deleteMany({ ks: "ks" });
 };
 module.exports.saveQuestions = saveQuestions;
 module.exports.retrieve = retrieve;
+module.exports.del = del;

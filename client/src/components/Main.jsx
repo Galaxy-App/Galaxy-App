@@ -1,7 +1,8 @@
 import Rps from './RockPaperScissors/index';
 import MainLog from './RegisterSignIn/index';
 import MainMem from './memoryGame/index';
-import MainQuiz from './quiz/index'
+import MainQuiz from './quiz/index';
+import GlobalScore from './GlobalScore'
 
 
 import React, { Component } from 'react'
@@ -10,11 +11,7 @@ export default class Main extends Component {
   constructor(props){
     super(props)
     this.state={
-<<<<<<< HEAD
-      view:"Memory",
-=======
       view:"MainLog",
->>>>>>> d39281d36dbf9d2e20230d5ae2c732440b0b7b1e
       globalScore:0
     }
     this.changeView=this.changeView.bind(this)
@@ -62,6 +59,15 @@ export default class Main extends Component {
       return (
         <div>
           <MainMem view={this.state.view} changeView={this.changeView}
+          globalScore={this.state.globalScore} updateGlobalScore={this.updateGlobalScore}
+          />
+        </div>
+      )
+    }
+    else if(this.state.view==="GlobalScore"){
+      return (
+        <div>
+          <GlobalScore view={this.state.view} changeView={this.changeView}
           globalScore={this.state.globalScore} updateGlobalScore={this.updateGlobalScore}
           />
         </div>

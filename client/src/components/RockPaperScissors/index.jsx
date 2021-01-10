@@ -3,6 +3,7 @@ import './index.css';
 import GuestPick from './guestPick';
 import HousePick from './HousePick';
 import ReleaseWin from './releaseWin';
+import axios from 'axios';
 
 
 export default class Rps extends Component {
@@ -99,7 +100,11 @@ export default class Rps extends Component {
             // .catch(error => {
             //     console.error('Error Adding Score', error)
             // })
-
+            // axios
+            // .post("/score",{"username":this.state.username,"score":this.state.globalScore},(req,res)=>{
+                //console.log("score updated")
+            // }
+            // )
         }
     }
 

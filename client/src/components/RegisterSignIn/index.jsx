@@ -10,12 +10,14 @@ export default class MainLog extends Component {
         this.state={
             name: "",
             email: "",
+            id:new Date(),
             view:props.view
         }
     };
 handleNameChange (e) {
         this.setState({
-            name: e.target.value
+            name: e.target.value,
+            globalScore:this.props.globalScore
             });
         }
 
@@ -27,18 +29,37 @@ this.setState({
 handleLogin() {
     console.log("EMail: " + this.state.email);
     console.log("Name: " + this.state.name);
-    this.props.changeView("Rps")
+    if (this.state.email !== "" && this.state.name !== "") {
+    this.props.changeView("Rps");
+    console.log("props???", this.state.view);
+    } else {
+    alert("you have to fill the blankes");
+    }
+    console.log("props???", this.state.view);
         console.log('props???',this.state.view)
+        Axios
+        .post("http://localhost:8000/",{"username":this.state.name,"email":this.state.email, "id":this.state.id,"score":this.state.globalScore}
+        ).then((res)=>{
+            console.log("response is sent",res.body)
+        }).catch((err)=>{
+            console.log("error from the server to post request",err)
+        })
+        Axios
+        .get("http://localhost:8000/home",(req,res)=>{
+            console.log("hellllloooo")
+        })
+        .then((response)=>console.log("response from register",response))
+        .catch()
 }
-componentDidMount(){
+// componentDidMount(){
 
-    Axios
-    .get("http://localhost:8000/home",(req,res)=>{
-        console.log("hellllloooo")
-    })
-    .then((response)=>console.log("response from componentDidMount register",response))
-    .catch()
-}
+//     Axios
+//     .get("http://localhost:8000/home",(req,res)=>{
+//         console.log("hellllloooo")
+//     })
+//     .then((response)=>console.log("response from componentDidMount register",response))
+//     .catch()
+// }
 
 
 

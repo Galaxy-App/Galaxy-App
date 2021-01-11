@@ -10,9 +10,11 @@ export default class MainLog extends Component {
         this.state={
             name: "",
             email: "",
-            id:new Date(),
-            view:props.view
+            view:props.view,
+            id:props.id
         }
+        this.updateId=this.props.updateId.bind(this)
+        this.handleLogin=this.handleLogin.bind(this)
     };
 handleNameChange (e) {
         this.setState({
@@ -26,56 +28,55 @@ this.setState({
     email: e.target.value
     });
 }
-handleLogin() {
-    console.log("EMail: " + this.state.email);
-    console.log("Name: " + this.state.name);
-    if (this.state.email !== "" && this.state.name !== "") {
-    this.props.changeView("Rps");
-    console.log("props???", this.state.view);
-    } else {
-    alert("you have to fill the blankes");
+handleIdChange (param) {
+ this.props.updateId(param)
+
     }
-    console.log("props???", this.state.view);
-        console.log('props???',this.state.view)
+handleLogin() {
         Axios
-        .post("http://localhost:8000/",{"username":this.state.name,"email":this.state.email, "id":this.state.id,"score":this.state.globalScore}
-        ).then((res)=>{
-            console.log("response is sent",res.body)
-        }).catch((err)=>{
-            console.log("error from the server to post request",err)
-        })
+        .post("http://localhost:8000/",{"username":this.state.name,"email":this.state.email,"score":this.state.globalScore})
+        .then((res)=>{ console.log("response is sent",res.body)})
+        .catch((err)=>{console.log("error from the server to post request",err)});
+
         Axios
-        .get("http://localhost:8000/home",(req,res)=>{
-            console.log("hellllloooo")
-        })
-        .then((response)=>console.log("response from register",response))
+        .get("http://localhost:8000/home",(req,res)=>{console.log("hellllloooo")})
+        .then((response)=>{console.log("response from register",response)})
         .catch()
+
+        console.log("updateId?", this.props);
+        Axios
+        .get('http://localhost:8000/user',{
+            params:{
+                "username":this.state.name,
+                "email":this.state.email
+            }
+        })
+        .then( (response)=>{this.updateId(response.data); console.log("this is the id",this.state.id)
+        if (this.state.email !== "" && this.state.name !== "") {
+            this.props.changeView("Rps");
+            console.log("props???", this.state.view);
+            } else {
+            alert("you have to fill the blankes");}
+            })
+        .catch((err)=>{console.log("error from the server to get request /user",err)});
+
+
 }
-// componentDidMount(){
-
-//     Axios
-//     .get("http://localhost:8000/home",(req,res)=>{
-//         console.log("hellllloooo")
-//     })
-//     .then((response)=>console.log("response from componentDidMount register",response))
-//     .catch()
-// }
-
-
 
     render() {
+        console.log("this is the id 22",this.state.id)
                 return(
                     <div>
-                    <h1>Enter your PseudoName</h1>
+                    <h1 style={{color:"white"}}>Enter your PseudoName</h1>
                     <form>
-                        <label>Name :</label>
+                        <label style={{color:"white"}}>PseudoName :</label>
                         <input type="text" name="name" value={this.state.name} onChange={this.handleNameChange.bind(this)} />
                         <br />
-                        <label>Email :</label>
+                        <label style={{color:"white"}}>Email :</label>
                         <input type="text" name="email"  value={this.state.email} onChange={this.handleEmailChange.bind(this)} />
                         <br />
                     </form>
-                    <button onClick={this.handleLogin.bind(this)}>Submit</button>
+                    <button onClick={()=>{this.handleLogin()}}>Submit</button>
                     </div>
                 )
             }

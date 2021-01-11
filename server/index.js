@@ -16,8 +16,20 @@ app.use(bodyParser.json())
 
 app.use(cors());
 // app.use(express.json());
+app.get('/user',(req,res)=>{
+  console.log("get request from /user",req.query)
+mod.User.find({username:req.query.username,email:req.query.email})
+.then(response => {
+  console.log('fetched data ', response[0]._id)
+  res.send(response[0]._id)
+})
+.catch(error => {
+  console.log('Error fetching data ', error)
+})
+});
+
 app.post("/", (req, res) => {
-  console.log("request is ", req.body);
+  // console.log("request is ", req.body);
   mod
     .duc({ username: req.body.username, email: req.body.email })
     .then((bol) => {
@@ -33,7 +45,7 @@ app.get("/home", (req, res) => {
   axios
     .get("https://opentdb.com/api.php?amount=10&type=multiple")
     .then((response) => {
-      console.log(response.data.results);
+      // console.log(response.data.results);
       let arr = response.data.results.map((ele) => {
         return {
           text: red(ele.question),
@@ -75,7 +87,20 @@ app.delete("/quiz",(req,res)=>{
   dbHelper.del().then(()=>{
     res.send()
   })
-})
+});
+
+app.patch('/users/:_id',(req,res)=>{
+  console.log("patch on /users/:_id",req.body)
+  mod.User.findByIdAndUpdate(req.params._id,{ $inc: {score: 1}})
+  .then(response => {
+    console.log('Updated document: ', response)
+  })
+  .catch(error => {
+    console.log('Error updating score: ', error)
+  })
+  res.send()
+});
+
 
 app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`));
 

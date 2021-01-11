@@ -114,7 +114,7 @@ export default class MainQuiz extends Component {
 				</div>
 			) : (
 				<>
-				<div className="title">Now, we test your general culture. Focus!!</div>
+				<div className="title" style={{color:"white"}}>Now, we test your general culture. Focus!!</div>
 				<div className='question-section'>
 					<div className='question-count'>
 						<span>Question {this.state.currentQuestion + 1}</span>/{this.state.questions.length}

@@ -18,6 +18,7 @@ let duc = (username) => {
 let dis=()=>{
   return User.find()
 }
+
 module.exports.User = User;
 module.exports.duc = duc;
 module.exports.dis = dis;

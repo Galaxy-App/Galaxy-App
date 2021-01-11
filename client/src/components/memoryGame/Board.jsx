@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Card from './Card';
 import './css/Board.css';
-import Axios from 'axios';
 //using hooks allows you to use state and other React features without writing a class
 //let you always use functions instead of having to constantly
 // switch between functions, classes, higher-order components, and render props.
@@ -119,9 +118,9 @@ const onCardClick = card => () => {
       <div className="container">
       {showen ? (
         <div>
-        <div> Let's test your memory now. Watch out tries are limited!!</div>
+        <div style={{color:"white"}}> Let's test your memory now. Watch out tries are limited!!</div>
         <div>
-        <h2 className='completed'> Score : {completedCount}</h2>
+        <h2 className='completed' style={{color:"white"}}> Score : {completedCount}</h2>
         </div>
           <div className='boarding'>
               {cards.map(card => (

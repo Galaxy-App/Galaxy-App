@@ -12,10 +12,13 @@ export default class Main extends Component {
     super(props)
     this.state={
       view:"MainLog",
-      globalScore:0
+      globalScore:0,
+      id:""
     }
     this.changeView=this.changeView.bind(this)
     this.updateGlobalScore=this.updateGlobalScore.bind(this)
+    this.updateId=this.updateId.bind(this)
+
 
   }
   changeView(param){
@@ -29,11 +32,18 @@ export default class Main extends Component {
       globalScore: number
     })
   }
+  updateId(param){
+    this.setState({
+      id: param
+    })
+  }
   render() {
     if(this.state.view==="MainLog"){
       return (
         <div>
-          <MainLog view={this.state.view} changeView={this.changeView} globalScore={this.state.globalScore}/>
+          <MainLog view={this.state.view} changeView={this.changeView} globalScore={this.state.globalScore}
+            id={this.state.id} updateId={this.updateId}
+          />
         </div>
       )
     }
@@ -42,6 +52,7 @@ export default class Main extends Component {
         <div>
           <Rps view={this.state.view} changeView={this.changeView}
           globalScore={this.state.globalScore} updateGlobalScore={this.updateGlobalScore}
+          id={this.state.id} updateId={this.updateId}
           />
         </div>
       )
@@ -51,6 +62,7 @@ export default class Main extends Component {
         <div>
           <MainQuiz view={this.state.view} changeView={this.changeView}
           globalScore={this.state.globalScore} updateGlobalScore={this.updateGlobalScore}
+          id={this.state.id} updateId={this.updateId}
           />
         </div>
       )
@@ -60,6 +72,7 @@ export default class Main extends Component {
         <div>
           <MainMem view={this.state.view} changeView={this.changeView}
           globalScore={this.state.globalScore} updateGlobalScore={this.updateGlobalScore}
+          id={this.state.id} updateId={this.updateId}
           />
         </div>
       )
@@ -69,6 +82,7 @@ export default class Main extends Component {
         <div>
           <GlobalScore view={this.state.view} changeView={this.changeView}
           globalScore={this.state.globalScore} updateGlobalScore={this.updateGlobalScore}
+          id={this.state.id} updateId={this.updateId}
           />
         </div>
       )

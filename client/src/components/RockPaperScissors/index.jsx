@@ -3,7 +3,8 @@ import './index.css';
 import GuestPick from './guestPick';
 import HousePick from './HousePick';
 import ReleaseWin from './releaseWin';
-import axios from 'axios';
+
+
 
 
 export default class Rps extends Component {
@@ -17,7 +18,8 @@ export default class Rps extends Component {
             score:0,
             winner:"",
             chosen:"guest",
-            globalScore:this.props.globalScore
+            globalScore:this.props.globalScore,
+            id:this.props.id
         }
         this.chosenState=this.chosenState.bind(this);
         this.guestPickState=this.guestPickState.bind(this);
@@ -90,21 +92,6 @@ export default class Rps extends Component {
             console.log('hello from componentDidUpdate RPS',this.props.view)
             this.props.changeView("Quiz")
             },4000)
-
-            // console.log ("hello",this.state.score)
-            // let score=this.state.score
-            // Axios.post('/user/score', score)
-            // .then(response => {
-            //     console.log('Score Added Successfullly', response)
-            // })
-            // .catch(error => {
-            //     console.error('Error Adding Score', error)
-            // })
-            // axios
-            // .post("/score",{"username":this.state.username,"score":this.state.globalScore},(req,res)=>{
-                //console.log("score updated")
-            // }
-            // )
         }
     }
 
@@ -130,7 +117,10 @@ export default class Rps extends Component {
             else if (this.state.chosen==="win"){
                 return(
                     <div>
-                    <ReleaseWin winner={this.state.winner} score={this.state.score} handleClickRender={this.handleClickRender} />
+                    <ReleaseWin winner={this.state.winner} score={this.state.score}
+                    handleClickRender={this.handleClickRender}
+                    globalScore={this.state.globalScore} id={this.state.id}
+                    />
                     </div>
                 )
             }

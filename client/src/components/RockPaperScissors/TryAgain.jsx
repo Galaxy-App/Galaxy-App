@@ -4,7 +4,7 @@ export default function TryAgain  (props)  {
     console.log ("hello from try again",props.handleClickRender)
     return (
         <div>
-            <button onClick={props.handleClickRender}>Try again</button>
+            <button style={{ color: "white" }} onClick={props.handleClickRender}>Try again</button>
         </div>
     )
 }

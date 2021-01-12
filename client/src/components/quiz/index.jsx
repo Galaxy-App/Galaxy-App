@@ -94,8 +94,12 @@ export default class MainQuiz extends Component {
 		}
 		};
 		componentWillUnmount(){
-			
-		};
+			Axios.delete("http://localhost:8000/quiz",(req,res)=>{
+				console.log("deleted")
+			})
+		}
+
+		// };
 	render() {
 		let quest=this.state.questions[this.state.currentQuestion]||{op:[]};
 		let ans=this.shuffle(quest.op)
@@ -110,7 +114,7 @@ export default class MainQuiz extends Component {
 				</div>
 			) : (
 				<>
-				<div className="title"></div>
+				<div className="title" style={{color:"white"}}>Now, we test your general culture. Focus!!</div>
 				<div className='question-section'>
 					<div className='question-count'>
 						<span>Question {this.state.currentQuestion + 1}</span>/{this.state.questions.length}

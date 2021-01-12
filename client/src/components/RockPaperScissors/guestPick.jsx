@@ -14,7 +14,12 @@ export default function GuestPick(props) {
     }
     return (
         <div className="guestPick">
-        <h1>Choose your move</h1>
+        <h1 style={{
+        color: "white",
+        textalign: "center",
+        fontsize: "100px",
+        fontweight: "bold",
+        }}>Welcome Welcome !! <br/>Let's see are you lucky enough to take this trip with us?<br/>Choose your move</h1>
             <div className="paper">
                 <img src={paper} alt="paper" onClick={playGame}/>
             </div>

@@ -1,12 +1,16 @@
-.Card{
-  flex: 1
+.Card {
+  flex: 50px;
 }
 
-.Card:hover{
+.Card:hover {
   cursor: pointer;
+  padding: 10px;
+  color: #255784;
+  background: white;
+  box-shadow: 0 0 10px white, 0 0 10px white, 0 0 20px white;
 }
 
-.Card img{
-  width: 100px;
-  height: 100px;
+.Card img {
+  width: 70px;
+  height: 70px;
 }

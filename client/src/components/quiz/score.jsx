@@ -10,7 +10,9 @@ export default class Score extends Component {
     }
     render() {
         return (
-            <div>
+            <div style={{
+                color: "white",
+            }}>
                 "You scored {this.state.score} out of {this.state.max}"
             </div>
         )
